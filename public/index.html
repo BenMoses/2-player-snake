@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+ 
+    <head>
+        <meta charset="utf-8">
+        <title>2 player snake</title>
+        <style>
+        #gameWindow {
+            width:800px;
+            height:600px;
+            border: 2px solid black;
+        }
+        </style>
+        <script src="/socket.io/socket.io.js"></script>
+    </head>
+ 
+    <body>
+        <canvas id="gameWindow" width="800" height="600"></canvas>
+        <script src="js/game.js"></script>
+        <button onclick=amReady()>ready?</button>
+    </body>
+ 
+</html>

@@ -26,18 +26,24 @@ this.socket.on("state", function(data) {
   //me == socket.id
 
   ctx.fillStyle = "#ffffff";
-  ctx.fillRect(0, 0, 800, 600);
-  for (let players in data) {
-    if (data[players] === data[socket.id]) {
+  ctx.fillRect(0, 0, 80, 60);
+  for (let players in data.players) {
+    if (data.players[players] === data.players[socket.id]) {
       //ME
       ctx.fillStyle = "#0000FF";
-    } else {
+    }else{
       ctx.fillStyle = "#FF0000";
     }
 
-    console.log(data[players].x - 5, data[players].y - 5, 10, 10);
-    ctx.fillRect(data[players].x - 5, data[players].y - 5, 10, 10);
+    var length = data.players[players].positions.length;
+    for(let i = 0; i<length; i++){
+      ctx.fillRect(data.players[players].positions[i][0], data.players[players].positions[i][1], 1, 1);
+    }
   }
+
+  ctx.fillStyle = "#00FF00";
+  ctx.fillRect(data.fruit[0], data.fruit[1], 1, 1);
+
 
   //Wq3Mi6K7PVmbIzyAAAAD: {x: 0, y: 0}
   //wbSfS0viFWaE2eznAAAC: {x: 0, y: 0}

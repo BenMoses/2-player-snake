@@ -67,7 +67,7 @@ io.on("connection", function(socket) {
 
       gameLoop = setInterval(function(){
         /////////////////////////////GAME LOOP
-        var state = {players: {}};
+        var state = {players: {}, scores: {}};
         if(fruit === undefined){
           fruit = generateFruit();
         }
@@ -115,6 +115,7 @@ io.on("connection", function(socket) {
           state.players[eachPlayer] = {
             positions: players[eachPlayer].positions
           }
+          state.scores[eachPlayer] = players[eachPlayer].positions.length
         }
           
         state.fruit = fruit;

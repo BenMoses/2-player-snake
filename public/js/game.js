@@ -42,7 +42,22 @@ this.socket.on("state", function(data) {
   }
 
   ctx.fillStyle = "#00FF00";
-  ctx.fillRect(data.fruit[0], data.fruit[1], 1, 1);
+  if(data.fruit){
+    ctx.fillRect(data.fruit[0], data.fruit[1], 1, 1);
+  }
+//{id:int, id:int}
+  var scores = getScores(data.scores);
+  var htmlText = "";
+  for(i=0; i<scores.length; i++){
+    if(scores[i][0] == socket.id){
+      htmlText += `<b>YOU (${scores[i][1]})</b>`;
+    }else {
+      htmlText += `Opponent (${scores[i][1]})`;
+    }
+  }
+
+  document.querySelector('#scores').innerHTML = htmlText;
+
 
 
   //Wq3Mi6K7PVmbIzyAAAAD: {x: 0, y: 0}
@@ -79,3 +94,19 @@ window.addEventListener("keydown", function(event) {
     this.socket.emit("direction", socket.id, direction);
   }
 });
+
+
+
+function getScores(scores){
+  
+var sorted = [];
+for (var player in scores) {
+    sorted.push([player, scores[player]]);
+}
+
+sorted.sort(function(a, b) {
+    return a[1] - b[1];
+});
+
+return sorted;
+}
